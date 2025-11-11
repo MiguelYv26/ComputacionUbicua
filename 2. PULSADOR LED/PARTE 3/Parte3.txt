@@ -1,0 +1,19 @@
+//código para que al presionar el botón, se encienda el led y se apague solo después de 5 segundos
+int PULSADOR=2;
+int LED=3;
+
+void setup(){
+  pinMode(PULSADOR, INPUT);     //PIN 2 COMO ENTRada
+  pinMode(LED, OUTPUT);    //PIN 3 COMO SALIDA
+}
+
+void loop(){
+  while (digitalRead(PULSADOR)==LOW){   //se espera q se presione el pulsador
+  }
+  digitalWrite(LED, HIGH);   //se enciende el led
+  delay(5000);            //delay de 5 segundos 
+  digitalWrite (LED, LOW);  //se apaga LED 
+  while(digitalRead(PULSADOR)==HIGH){  //antirrebote 
+
+  }
+}

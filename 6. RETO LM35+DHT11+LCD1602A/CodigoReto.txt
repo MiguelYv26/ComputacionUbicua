@@ -1,0 +1,35 @@
+#include <DHT.h> //librerias dht
+#include <DHT_U.h>
+#include <LiquidCrystal.h>		// importa libreria LiquidCrystal
+
+LiquidCrystal lcd(7, 6, 5, 4, 3, 2);	// crea objeto y asigna pines a los cuales se
+					// encuentran conectados RS, E, D4, D5, D6, D7
+int SENSORLM;		// variable almacena valor leido de entrada analogica A0
+float TEMPERATURALM;	// valor de temperatura en grados centigrados
+int SENSORDHT = 13; //pin 13 conectado al dht11
+int TEMPERATURADHT;
+
+DHT dht(SENSORDHT, DHT11); //pin y especificar sensor 
+
+void setup() {
+  lcd.begin(16, 2);	// inicializa lcd en 16 columnas por 2 filas
+  // entradas analógicas no requieren inicialización
+  dht.begin();
+}
+
+void loop() {
+  TEMPERATURADHT = dht.readTemperature(); //se usa la funcion readtemperature
+  SENSORLM = analogRead(A0);			// lectura de entrada analogica A0
+  TEMPERATURALM = ((SENSORLM * 5000.0) / 1023) / 10;// formula para convertir valor leido
+						// de entrada A0 en grados centigrados
+  lcd.setCursor(0, 0);				// cursor en primer fila y primer columna
+  lcd.print("Temp LM35: ");				// escribe Temp lm35:
+  lcd.print(TEMPERATURALM, 0);			// ESCRIBE VALOR LM35
+  lcd.print(" C");				// imprime C
+  lcd.setCursor(0,1); //cursor en segunda fila y primer columna
+  lcd.print("Temp DHT11: "); //escribe temp dht
+  lcd.print(TEMPERATURADHT); //variable tempdht
+  lcd.print(" C");  //c
+
+  delay(1000);						// demora de 1 seg. entre lecturas
+}

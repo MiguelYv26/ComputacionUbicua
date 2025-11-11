@@ -1,0 +1,19 @@
+//configurar la iluminación del led mediante analogicwrite y con intensidad del 0 a 256
+
+int LED =3;
+int BRILLO;
+
+void setup(){
+  pinMode(LED, OUTPUT);
+}
+
+void loop(){
+  for(BRILLO=0; BRILLO<256; BRILLO++){  //inicio de bucle que va aumentando la intensidad de brillo
+    analogWrite(LED,BRILLO);
+    delay(15);
+  }
+  for(BRILLO=255; BRILLO>=0; BRILLO--){ //inicio de bucle que va disminuyendo la intensidad del brillo
+    analogWrite(LED,BRILLO);
+    delay(15);
+  }
+}

@@ -1,0 +1,13 @@
+int LED = 3; // LED en pin 3
+int BRILLO;
+int POT = 0; // Potenciometro en pin A0 analog in
+
+void setup(){
+  pinMode(LED, OUTPUT);
+  // Las entradas analógicas no requieren inicialización
+}
+
+void loop(){
+  BRILLO = analogRead(POT) / 4; // Se divide el valor total en 4
+  analogWrite(LED, BRILLO);   // Se suministra brillo al LED con la rotación del potenciometro
+}
